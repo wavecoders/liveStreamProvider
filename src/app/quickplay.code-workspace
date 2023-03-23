@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "quickplay",
+		"eslint.enable": false,
+		"jshint.enable": false,
+		"standard.enable": false
+	}
+}

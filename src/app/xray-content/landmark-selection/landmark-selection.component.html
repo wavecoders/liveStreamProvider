@@ -1,0 +1,16 @@
+<div style="margin-left: 8px;">
+    <button mat-mini-fab [matMenuTriggerFor]="menu">
+        <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
+    </button>
+</div>
+
+<mat-menu #menu="matMenu" yPosition="above">
+    <div (click)="$event.stopPropagation()">
+        <mat-selection-list #shoes [formControl]="selectedForm">
+            <mat-list-option *ngFor="let type of section" [value]="type">
+            {{type}}
+            </mat-list-option>
+        </mat-selection-list>
+    </div>
+</mat-menu>
+

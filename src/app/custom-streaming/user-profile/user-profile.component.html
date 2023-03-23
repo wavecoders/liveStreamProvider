@@ -1,0 +1,63 @@
+<div *ngIf="user">
+
+  <div class="card" [style.background-image]="'url('+bkImage+')'" [class.disabled]="!isValid">
+    <div class="card-header" style="position: relative;">
+      <div class="avatar-container">
+        <img [src]="user.image">
+      </div>
+      <div class="close">
+        <button mat-icon-button (click)="onDelete()">
+            <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3 style="margin-top: 8px; margin-bottom: 0;">
+        {{ user.name }}
+      </h3>
+      <h5 style="color: grey">{{ user.email }}</h5>
+    </div>
+
+    <div class="card-body" style="padding-top: 16px;" *ngIf="(mainGenre$ | async) as genres">
+
+      <mat-form-field appearance="outline" *ngIf="!isActive">
+        <mat-label>Genre</mat-label>
+        <mat-select [formControl]="genreControl">
+          <ng-container *ngFor="let genre of genres">
+            <mat-option *ngIf="genre !== ''" [value]="genre">
+              {{ genre| titlecase }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+
+      <div
+        style="padding-bottom: 16px; width: 100%; text-align: center; padding-top: 0;"
+        *ngIf="!user.active; else ACTIVE">
+        <button
+          style="width: 90%;"
+          color="primary"
+          mat-flat-button
+          [disabled]="!isValid"
+          (click)="onCreateLiveStream()"
+          >
+          Create Live Channel
+        </button>
+      </div>
+      <ng-template #ACTIVE>
+        <div style="padding: 16px; width: 100%; text-align: center;">
+          <h3 style="color: grey; text-align: center;">
+            NOW STREAMING<br>
+            {{ genreControl.value | uppercase }}
+          </h3>
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+      </ng-template>
+
+    </div>
+
+  </div>
+
+</div>
+
+

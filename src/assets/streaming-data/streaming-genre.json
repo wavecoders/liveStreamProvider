@@ -1,0 +1,12 @@
+[
+  { "genre": "action", "sub": ["martial arts", "superhero", "spy/espionage"] },
+  { "genre": "adventure", "sub": ["fantasy", "historical", "survival"] },
+  { "genre": "comedy", "sub": ["romantic comedy", "satire","slapstick"] },
+  { "genre": "drama", "sub": ["crime drama", "historical drama", "melodrama"] },
+  { "genre": "horror", "sub": ["supernatural horror", "psychological horror", "slasher"] },
+  { "genre": "science fiction", "sub": ["space opera", "time travel", "cyberpunk"] },
+  { "genre": "sports", "sub": ["individual sports", "team sports", "extreme sports"] },
+  { "genre": "documentary", "sub": ["biographical", "investigative", "environmental"] },
+  { "genre": "reality", "sub": ["competition", "makeover", "travel"] },
+  { "genre": "animation", "sub": ["anime", "CGI", "stop-motion"] }
+]

@@ -1,0 +1,192 @@
+<mat-toolbar>
+ <div style="display: flex">
+    <div style="padding-top: 12px; margin-right: 8px;">
+      <img src="/assets/quickplay.webp" height="28px">
+    </div>
+    <div>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="(hasUsers$() | async); NOUSERS">
+        <mat-icon>people_alt</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <div style="margin: 8px; margin-bottom: 0; margin-top: 0;">
+          <button mat-menu-item (click)="onSelectedTab(-1)">
+            <mat-icon>people_alt</mat-icon>
+            User Accounts
+          </button>
+          <mat-divider></mat-divider>
+          <ng-container *ngIf="(users$ | async) as users">
+            <button
+              mat-menu-item
+              *ngFor="let user of users; let i = index"
+              (click)="onSelectedTab(i, user)"
+              [disabled]="!user.active"
+            >
+            <mat-icon>person</mat-icon>
+              {{ user.name }}
+            </button>
+          </ng-container>
+        </div>
+      </mat-menu>
+
+      <ng-template #NOUSERS>
+        <div style="margin: 8px; margin-bottom: 0; margin-top: 0;">
+        <button mat-menu-item [disabled]="true">
+          <mat-icon>people_alt</mat-icon>
+          <span style="font-size: 1rem; font-size: .8rem; font-weight: 400; padding-top: 8px; color: red">
+            Create a User Profile and Select the Base Genre
+          </span>
+        </button>
+        </div>
+      </ng-template>
+    </div>
+    <span
+      style="font-size: 1rem; padding-top: 8px; font-weight: 400; margin-left: 8px;"
+      *ngIf="(hasUsers$() | async); else NOUSERS"
+    >
+      {{ (usersLength$() | async) }} User Accounts
+    </span>
+ </div>
+</mat-toolbar>
+
+<div *ngIf="selectedTab >= 0; else ACCOUNTS">
+
+  <div *ngIf="(user$(selectedTab) | async) as user">
+
+    <div
+    style="padding: 32px; height: 100dvh; width: 100dvw;" class="box background-tint"
+    [style.background-image]="'url('+genreImage(user)+')'"
+    >
+
+    <div style="display: flex; margin-top: 16px;">
+      <div style="padding-top: 8px;">
+        <div class="avatar-container" [matMenuTriggerFor]="menu">
+          <img [src]="user.image" height="44">
+        </div>
+        <mat-menu #menu="matMenu">
+          <div *ngIf="!(hasContent$ | async); else PLAYING">
+            <button *ngFor="let genre of (genre$(user) | async)" (click)="onSelectedSubGenre(user, genre)" mat-menu-item>
+              {{ genre | titlecase }}
+            </button>
+          </div>
+          <ng-template #PLAYING>
+            <div style="margin: 16px;">
+              Content as been selected.
+              Please wait for live content list to end.
+            </div>
+          </ng-template>
+
+        </mat-menu>
+      </div>
+      <div style="color: white; flex: 1;">
+        <h1 style="margin-bottom: 0; padding-top: 2px; margin-left: 8px;">
+          {{ user.name }}
+        </h1>
+        <p style="margin-left: 8px; color: whitesmoke; opacity: .45;">
+          <span>{{ user.genre | uppercase }}</span>
+          <span *ngIf="user.sub !== ''"> | {{ user.sub| uppercase }}</span>
+        </p>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 16px; position: relative;">
+      <div style="width: 100%">
+        <app-video-wrapper
+          [autoplay]="true"
+          [videoStream]="user.content.stream_url"
+        ></app-video-wrapper>
+      </div>
+
+      <div style="color: white; position: absolute; left: 16px; bottom: 16px">
+        <!-- <h2 style="margin-bottom: 0;">{{ user.content.name | uppercase }}</h2> -->
+        <!-- <h3 style="opacity: .4;">{{ user.content.description }}</h3> -->
+      </div>
+    </div>
+
+    <div *ngIf="user.sub !== ''">
+      <app-up-next [user]="user"></app-up-next>
+    </div>
+
+    </div>
+<span style="color:white">{{ bkImage$ | async }}</span>
+  </div>
+</div>
+
+<ng-template #ACCOUNTS>
+  <app-user-profile-manager></app-user-profile-manager>
+</ng-template>
+
+
+  <!-- <mat-tab-group animationDuration="0ms" (selectedTabChange)="onSelectedTab($event, users)">
+
+    <mat-tab label="User Profiles">
+      <app-user-profile-manager></app-user-profile-manager>
+    </mat-tab>
+
+    <mat-tab
+      *ngFor="let user of users; let i = index"
+      [label]="user.name"
+      [disabled]="!userValid(user)"
+    >
+
+      <ng-container *ngIf="selectedTab!==i">
+        <div
+        style="padding: 32px; height: 100dvh;" class="box background-tint"
+        [style.background-image]="'url('+user.content.backgroundImage"
+        >
+
+        <div style="display: flex; margin-top: 16px;">
+          <div style="padding-top: 8px;">
+            <div class="avatar-container">
+              <img [src]="user.image" height="44">
+            </div>
+          </div>
+          <div style="color: white; flex: 1;">
+            <h1 style="margin-bottom: 0; padding-top: 2px; margin-left: 8px;">
+              {{ user.name }}
+            </h1>
+            <p style="margin-left: 8px; color: whitesmoke; opacity: .45;">
+              <span>{{ user.genre | uppercase }}</span>
+              <span *ngIf="user.sub !== ''"> | {{ user.sub| uppercase }}</span>
+            </p>
+          </div>
+          <div>
+            <button mat-flat-button [matMenuTriggerFor]="menu">
+              SubGenre
+            </button>
+            <mat-menu #menu="matMenu">
+              <button *ngFor="let genre of (genre$(user) | async)" (click)="onSelectedSubGenre(user, genre)" mat-menu-item>
+                {{ genre | titlecase }}
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 16px" *ngIf="user.content.stream_url !== ''">
+          <div>
+            <app-video-wrapper [autoplay]="true"></app-video-wrapper>
+          </div>
+
+          <div style="color: white">
+            <h2>{{ user.content.name | uppercase }}</h2>
+            <h3 style="opacity: .4;">{{ user.content.description }}</h3>
+          </div>
+        </div>
+
+        <div style="margin: 16px;" *ngIf="user.sub !== ''">
+          <app-up-next [user]="user"></app-up-next>
+        </div>
+        <div style="color: white">{{ isPlaying$ | async }}</div>
+        </div>
+      </ng-container>
+
+    </mat-tab>
+
+  </mat-tab-group> -->
+
+<!-- </div> -->
+
+
+
+

@@ -1,0 +1,50 @@
+
+<ng-container *ngIf="loggedin">
+  <button
+    style="margin-top: 32px;"
+    class="btn logout"
+    mat-stroked-button
+    (click)="onLogout()"
+    >
+    Logout
+  </button>
+</ng-container>
+
+<ng-container *ngIf="!loggedin">
+<div class="mat-elevation-z8" style="margin-top: 15%;">
+  <mat-card appearance="outlined" style="padding: 24px; width: 640px;">
+    <mat-card-title style="padding: 16px;">
+    <img src="assets/quickplay.webp" height="44">
+    </mat-card-title>
+    <mat-card-content>
+
+    <div [formGroup]="form">
+
+      <div style="display: flex; justify-content: center; flex-direction: column;">
+        <mat-form-field appearance="outline" >
+          <input type="text" matInput placeholder="Username" formControlName="username">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" >
+          <input type="password" matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+      </div>
+
+    </div>
+
+   <div style="display: flex; flex-direction: row-reverse;">
+    <button
+      class="btn login"
+      [disabled]="!isValid"
+      color="primary"
+      mat-flat-button
+      (click)="onLogin()"
+      >
+      Login
+    </button>
+   </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+</ng-container>

@@ -1,0 +1,75 @@
+.avatar-container {
+  width: 100px; /* set your desired width */
+  height: 100px; /* set your desired height */
+  border-radius: 50%; /* make the container round */
+  border: 5px solid #fff; /* set the border thickness and color */
+  overflow: hidden; /* clip the image to the container */
+}
+
+.avatar-container img {
+  width: 100%; /* make the image fill the container */
+  height: 100%; /* make the image fill the container */
+  object-fit: cover; /* scale the image while preserving aspect ratio */
+  object-position: center; /* center the image */
+}
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 240px;
+  height: 400px;
+  /* background-image: url('https://img.freepik.com/free-photo/big-city_1127-3102.jpg?w=2000&t=st=1678626520~exp=1678627120~hmac=887d56b352f985d31538c5ea603419b5df1fa4c2c1d642dc5321db5ae2f3d57b'); */
+  background-position: center;
+  background-size: cover;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* small shadow */
+  padding: 8px;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 16px;
+  margin-bottom: 0;
+}
+
+.card-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 2px black, 0 0 1em rgb(0, 0, 0), 0 0 0.2em rgb(0, 0, 0);
+  margin: 0;
+}
+
+.card-body {
+  width: 100%;
+  background-color: #fff;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.card-body p {
+  font-size: 18px;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: -20px;
+  right: -4px;
+  color: white;
+}
+
+.disabled {
+  -webkit-filter: grayscale(80%);
+  filter: grayscale(80%);
+}

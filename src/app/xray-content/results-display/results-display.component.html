@@ -1,0 +1,16 @@
+<button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>info</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu" yPosition="above">
+  <div style="margin: 8px;">
+    <div *ngFor="let key of keys(resultsData); let i = index" style="display: flex; flex: 1; margin: 8px;">
+      <div style="flex: 1;">
+        {{ key | titlecase }}
+      </div>
+      <div>
+        {{ values(resultsData)[i] }}
+      </div>
+    </div>
+  </div>
+</mat-menu>

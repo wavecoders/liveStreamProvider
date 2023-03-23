@@ -1,0 +1,21 @@
+:host {
+  margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn {
+    width: 120px;
+  }
+
+  .login {
+    background-color: #ff851f;
+    color: white;
+  }
+
+.logout {
+  position: absolute;
+  right: 16px;
+  top: -16px;
+}
+

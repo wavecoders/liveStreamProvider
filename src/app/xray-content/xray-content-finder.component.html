@@ -1,0 +1,206 @@
+<div style="padding-bottom: 16px;" [style.backgroundColor]="(backgroundColor$ | async)">
+  <div *ngIf="isLoggedIn">
+
+  <!-- TITLE -->
+  <div *ngIf="(generalInfo$  | async) as info">
+    <div style="position: absolute; width: 100%;" class="simple">
+      <div class="title">
+       <div>
+        <img
+        #titleImage
+        src="assets/{{info.title}}.png"
+        width="400" style="position: absolute; top: -80px"
+        loading="lazy"
+        >
+       </div>
+      </div>
+    </div>
+
+    <div class="chips" style="display: flex;">
+      <div>
+        <app-genre-list-selector
+          [currentItems]="sections.genre"
+          [min]="50"
+          (changedOnClose)="onSelectedGenre($event)"
+        ></app-genre-list-selector>
+      </div>
+      <div style="display: flex;">
+
+        <!-- action, micro_genre, landmark -->
+        <app-landmark-selection
+          *ngIf="sections?.action && sections?.action.length > 0"
+          [section]="sections?.action"
+          icon="directions_run"
+          (selected)="onSelectedAction($event)"
+        ></app-landmark-selection>
+
+        <app-landmark-selection
+          *ngIf="sections?.micro_genre && sections?.micro_genre.length > 0"
+          [section]="sections?.micro_genre"
+          icon="memory"
+          (selected)="onSelectedMicro($event)"
+        ></app-landmark-selection>
+
+        <app-landmark-selection
+          *ngIf="sections?.landmark && sections?.landmark.length > 0"
+          [section]="sections?.landmark"
+          icon="location_city"
+          (selected)="onSelectedLandmark($event)"
+          ></app-landmark-selection>
+
+          <app-landmark-selection
+          *ngIf="sections?.credits && sections?.credits.length > 0"
+          [section]="sections?.credits"
+          icon="format_align_center"
+          (selected)="onSelectedCredits($event)"
+          ></app-landmark-selection>
+
+      </div>
+    </div>
+
+    <div>
+      <!-- IMAGE CREATE DOWNLOAD -->
+      <app-image-compositor [posterImage]="(selected) ? selected : info.backdrop" [posterTitle]="info.title"></app-image-compositor>
+    </div>
+
+    <div style="text-align: center;" class="light-shadow">
+      <div style="overflow: hidden;">
+        <img *ngIf="!selected" [src]="info.backdrop" style="height: 360px; scale: 1.45;" loading="lazy">
+        <img #posterImage *ngIf="selected" [src]="selected" class="poster" loading="lazy">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CAST -->
+  <div *ngIf="sections">
+    <div>
+      <app-cast-selection
+        [textColor]="(textColor$ | async)"
+        [formControl]="castControl"
+        class="cast"
+        [cast]="sections.cast"
+      ></app-cast-selection>
+    </div>
+
+  <!-- <div
+    [formGroup]="details"
+    style="text-align: center; display: flex; gap: 16px; justify-content: center; margin-top: 16px;"
+  >
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cast</mat-label>
+      <mat-select multiple formControlName="cast">
+        <mat-select-trigger>
+          {{sections.cast.value?.[0] || ''}}
+          <span *ngIf="(sections.cast.value?.length || 0) > 1">
+            (+{{(sections.cast.value?.length || 0) - 1}} {{sections.cast.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let cast of sections.cast" [value]="cast">
+          {{cast}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>genre</mat-label>
+      <mat-select multiple formControlName="genre">
+        <mat-select-trigger>
+          {{sections.genre.value?.[0] || ''}}
+          <span *ngIf="(sections.genre.value?.length || 0) > 1">
+            (+{{(sections.genre.value?.length || 0) - 1}} {{sections.genre.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let genre of sections.genre" [value]="genre">{{genre}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cast</mat-label>
+      <mat-select multiple formControlName="action">
+        <mat-select-trigger>
+          {{sections.action.value?.[0] || ''}}
+          <span *ngIf="(sections.action.value?.length || 0) > 1">
+            (+{{(sections.action.value?.length || 0) - 1}} {{sections.action.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let action of sections.action" [value]="action">{{action}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div> -->
+
+  </div>
+
+  <!-- CONTENT THUMBS -->
+  <ng-container *ngIf="results">
+
+    <div style="margin: 24px; padding-top: 60px;" *ngIf="results.length > 0; else noResults">
+      <div style="display: flex;">
+        <div style="display: flex; flex: 1; padding-top: 12px;">
+          <h3 style="margin-bottom: 4px;" [style.color]="(textColor$ | async)">
+            Results {{ results.length | number }}
+          </h3>
+        </div>
+        <div>
+          <app-results-display [resultsData]="resultDetails"></app-results-display>
+        </div>
+      </div>
+
+      <div style="overflow: hidden; height: 400px; overflow-y: auto;">
+        <div class="gallery">
+          <div *ngFor="let result of results" (click)="onSelectThumb(result)">
+            <img loading="lazy" [src]="result.Clips" class="gallery__img thumb-shadow">
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noResults>
+      <h3 style="text-align: center; padding-top: 80px; height: 100vh;" [style.color]="(textColor$ | async)">
+        No Results found
+      </h3>
+    </ng-template>
+  </ng-container>
+
+</div>
+
+<!-- IMPORTERS -->
+<div
+  class="load-button"
+  *ngIf="!(generalInfo$  | async) as info"
+  >
+  <!-- JSON IMPORTER -->
+  <div style="text-align: center; margin-top: 64px;">
+    <img *ngIf="isLoggedIn" src="assets/quickplay.webp" height="44" style="margin-bottom: 32px;">
+    <h3 style="margin-left: 15%; margin-right: 15%;">
+      This application processes AI imformation and
+      allows the user to control variances of the data
+      allowing the selection of the results composited
+      in the final view. Enjoy!
+    </h3>
+  </div>
+
+  <!-- SELECTOR -->
+  <div>
+    <app-json-file-selector (selectedJson)="onSelectedJson($event)"></app-json-file-selector>
+  </div>
+
+  <!-- FILE IMPORTER OLD -->
+  <!-- <div *ngIf="isLoggedIn" style="width: 100%; text-align: center; margin-top: 24px;">
+    <input
+      type="file"
+      #fileImportInputx
+      id="uploadFile"
+      (change)="fileChangeListener($event)"
+      name="uploadFile"
+      multiple="multiple"
+      accept="csv/*"
+      hidden
+    />
+    <label for="uploadFile">Select a CSV file to process</label>
+  </div> -->
+
+</div>
+
+</div>
+

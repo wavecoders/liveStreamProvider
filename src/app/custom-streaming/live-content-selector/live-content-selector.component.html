@@ -1,0 +1,31 @@
+<ng-container *ngIf="timeRemaining(time) > 0">
+
+  <div class="box">
+    <div class="box-img">
+      <img [src]="poster">
+      <div class="box-check" *ngIf="upnext">
+        <mat-icon>check_circle_outline</mat-icon>
+      </div>
+    </div>
+    <div class="box-img hover">
+      <div class="box-content">
+        <h2 style="margin-bottom: 0; line-height: 1.4rem;">
+        {{ details.title }}
+        </h2>
+        <p style="width: 90%;">
+          {{ details.description }}
+        </p>
+      </div>
+      <img [src]="image">
+    </div>
+  </div>
+
+  <h4
+    style="margin-top: 8px; width: 124px;"
+    class="title-text"
+  >
+    <p style="opacity: .6;">{{ timeRemaining(time) }} minutes</p>
+
+  </h4>
+</ng-container>
+

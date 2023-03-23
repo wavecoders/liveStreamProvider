@@ -1,0 +1,27 @@
+<ng-container>
+
+  <div *ngIf="(content$ | async) as content">
+
+    <div style="margin-top: 8px;" *ngIf="content.length > 0">
+      <h2 style="color: white; margin-bottom: 0;">Now Playing...</h2>
+    </div>
+
+    <div
+      style="display: flex; gap: 16px; overflow-y: hidden;"
+    >
+    <!-- <span style="color:white">{{ content$ | async | json }}</span> -->
+      <ng-container *ngFor="let show of content">
+        <app-live-content-selector
+          [poster]="show.poster"
+          [image]="show.image"
+          [details]="show.details"
+          [time]="show.timeEnd"
+          (selected)="onSelected($event)"
+        ></app-live-content-selector>
+      </ng-container>
+    </div>
+
+  </div>
+
+</ng-container>
+<!-- <div style="color: white">{{ (selectedContent$ | async) | json }}</div> -->

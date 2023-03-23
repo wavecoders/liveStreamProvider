@@ -1,0 +1,79 @@
+.box {
+  position: relative;
+  width: 124px;
+  height: 164px;
+  overflow: hidden;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* small shadow */
+  transition: all 0.3s ease; /* smooth transition */
+  border-radius: 4px;
+}
+
+.box:hover {
+  width: 260px;
+  height: 164px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* larger shadow */
+}
+
+.box-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.box-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box-img.hover {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.box:hover .hover {
+  opacity: 1;
+}
+
+.box-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 44px;
+  padding: 10px;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 1em rgb(0, 0, 0), 0 0 0.2em rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0);
+  width: 100%;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.box-check {
+  top: 0;
+  text-align: end;
+  left: -22px;
+  position: absolute;
+  padding: 10px;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 1em rgb(0, 0, 0), 0 0 0.2em rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0);
+  width: 100%;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.btn {
+  width: 160px;
+}
+
+.title-text {
+  color: whitesmoke;
+  font: 14px/20px arial,sans-serif;
+  letter-spacing: .2px;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+

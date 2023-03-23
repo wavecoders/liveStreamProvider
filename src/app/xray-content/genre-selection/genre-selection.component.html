@@ -1,0 +1,28 @@
+<mat-chip-set
+cdkDropList
+cdkDropListOrientation="horizontal"
+(cdkDropListDropped)="drop($event)"
+name="genre" ngDefaultControl
+>
+
+<mat-chip-option
+  class="shadow"
+  cdkDrag
+  color="primary"
+  selected
+  [matMenuTriggerFor]="menu"
+  *ngFor="let genre of sections"
+  >
+  {{ genre.name }}
+  <span style="font-weight: bold">{{ genre.percent }}%</span>
+
+  <mat-menu #menu="matMenu" yPosition="above" (closed)="onOrdergenre()">
+    <div style="margin-left: 8px; margin-right: 8px;">
+      <button mat-button (click)="onLess(genre); $event.stopPropagation()">Less</button>
+      <button mat-button (click)="onMore(genre); $event.stopPropagation()">More</button>
+    </div>
+  </mat-menu>
+
+</mat-chip-option>
+
+</mat-chip-set>

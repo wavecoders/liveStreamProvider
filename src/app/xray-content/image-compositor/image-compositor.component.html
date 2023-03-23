@@ -1,0 +1,22 @@
+<div style="position: fixed; top: 0; left: 32px; z-index: 100;">
+  <button style="margin-top: 16px;" mat-mini-fab color="primary" (click)="onDownloadPoster()">
+    <mat-icon>file_download</mat-icon>
+  </button>
+</div>
+
+<div style="visibility: hidden; position: absolute; z-index: 1000;">
+  <div style="position: absolute;">
+    <div style="overflow: hidden;" *ngIf="posterImage">
+      <img #posterImagePosition [src]="posterImage" class="poster" loading="lazy" height="600">
+    </div>
+  </div>
+
+  <div class="titleLogo" *ngIf="posterTitle">
+    <img
+    #titleImagePosition
+    src="assets/{{posterTitle}}.png"
+    loading="lazy"
+    width="500"
+    >
+  </div>
+</div>

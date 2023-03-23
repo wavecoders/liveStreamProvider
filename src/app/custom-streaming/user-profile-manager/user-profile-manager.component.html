@@ -1,0 +1,36 @@
+<div style="margin: 32px;" *ngIf="(users$ | async) as users">
+
+  <div style="display: flex">
+    <h2 style="flex: 1; margin-bottom: 0;" *ngIf="users.length > 0; else NOACCOUNTS">
+      {{ users.length }} User Profiles
+    </h2>
+    <ng-template #NOACCOUNTS>
+      <h2 style="flex: 1; margin-bottom: 0;">No Users</h2>
+    </ng-template>
+
+    <div style="display: flex; gap:8px">
+      <button mat-flat-button (click)="onClearUsers()">
+        Clear all profiles
+      </button>
+      <button mat-flat-button color="primary" (click)="onCreateUser()">Create a User Profile</button>
+    </div>
+  </div>
+
+  <p style="margin-top: 8px;">
+    <mat-divider></mat-divider>
+  </p>
+
+  <div
+    *ngIf="users.length > 0"
+    style="display: flex; gap: 16px; overflow: hidden; overflow-x: scroll;"
+  >
+    <div *ngFor="let user of users">
+      <app-user-profile
+        [user]="user"
+        (liveStream)="onCreateLiveStream($event)"
+        (deleted)="onDeleteUser($event)"
+      ></app-user-profile>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Big Buck Bunny",
+    "url": "https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8"
+  },
+  {
+    "title": "Sintel",
+    "url": "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+  },
+  {
+    "title": "Quickplay",
+    "url": "https://stream.broadpeak.io/17c276c8e723eb4694087ff0161bb1ec/flm-gcp-lab-live/live/ch1-blmbrg/main.m3u8"
+  }
+]

@@ -1,0 +1,30 @@
+.avatar-container {
+  width: 42px; /* set your desired width */
+  height: 42px; /* set your desired height */
+  border-radius: 50%; /* make the container round */
+  border: thin black solid; /* set the border thickness and color */
+  overflow: hidden; /* clip the image to the container */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.avatar-container img {
+  width: 100%; /* make the image fill the container */
+  height: 100%; /* make the image fill the container */
+  border: thin white solid; /* set the border thickness and color */
+  object-fit: cover; /* scale the image while preserving aspect ratio */
+  object-position: center; /* center the image */
+}
+
+.box {
+  background-size: cover;
+  background-image: url('https://placehold.co/300');
+}
+
+.background-tint {
+  background-color: rgba(53, 30, 6, 0.718);
+  background-blend-mode: multiply;
+}
+
+h1, h2, h3 {
+  text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

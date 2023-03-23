@@ -1,0 +1,23 @@
+<button mat-raised-button class="btn" [matMenuTriggerFor]="menu">Action</button>
+
+<mat-menu #menu="matMenu" class="menu" (close)="onClosedMenu()">
+  <mat-selection-list [multiple]="false">
+  <mat-list-option *ngFor="let item of currentItemsSorted">
+    <div class="flex" style="margin: 2px;" (click)="$event.stopPropagation()">
+      <div class="flex-fill flex">
+        <span class="flex-fill">{{ item.name }}</span>
+        <span style="margin-right: 16px;">{{ item.percent }}%</span>
+      </div>
+      <div>
+        <button mat-stroked-button class="btn-square" (click)="onDecrease(item)">
+            <mat-icon>remove</mat-icon>
+        </button>
+        <button mat-stroked-button class="btn-square" (click)="onIncrease(item)">
+            <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-list-option>
+  </mat-selection-list>
+</mat-menu>
+

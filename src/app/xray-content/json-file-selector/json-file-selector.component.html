@@ -1,0 +1,21 @@
+<div style="margin-top: 32px;">
+  <div>
+    <mat-form-field appearance="outline" style="width: 320px;">
+      <mat-label>Choose an XRAY Content File</mat-label>
+      <mat-select (valueChange)="onSelected($event)" [formControl]="selecedXray">
+        <mat-option *ngFor="let xray of xraySelections" [value]="xray">
+          {{ xray.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button
+      [disabled]="!isValid"
+      mat-flat-button color="primary"
+      (click)="onOpenXray()" style="width: 320px;">
+      Use XRAY Data File
+    </button>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+label {
+    background-color: indigo;
+    color: white;
+    padding: 0.75rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 190px;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .simple {
+    z-index: 100;
+    color: white;
+    text-shadow: 0 3px 6px black
+  }
+
+  .otto {
+    color: white;
+    text-shadow: 0 1px 0 #ccc,
+                 0 2px 0 #c9c9c9,
+                 0 3px 0 #bbb,
+                 0 4px 0 #b9b9b9,
+                 0 5px 0 #aaa,
+                 0 6px 1px rgba(0,0,0,.1),
+                 0 0 5px rgba(0,0,0,.1),
+                 0 1px 3px rgba(0,0,0,.3),
+                 0 3px 5px rgba(0,0,0,.2),
+                 0 5px 10px rgba(0,0,0,.25),
+                 0 10px 10px rgba(0,0,0,.2),
+                 0 20px 20px rgba(0,0,0,.15);
+  }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(0, 6vw);
+  grid-gap: 15px;
+}
+
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+}
+
+.gallery__img:hover {
+  outline: 2px solid white;
+  outline-offset: -4px;
+  border-radius: 8px;
+}
+
+.poster {
+  overflow: hidden;
+  scale: 1.35;
+  height: 360px;
+  border-radius: 16px;
+}
+
+.description {
+  margin-left: 30px;
+  font-size: 1.1rem;
+  line-height: 1.3rem;
+  color: white;
+  position: relative;
+  width: 320px;
+  top: -20px
+}
+
+.title {
+  position: relative;
+  font-size: 2.5rem;
+  bottom: -200px;
+  left: 32px;
+  line-height: 3rem;
+  /* width: 320px; */
+}
+
+.cast {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  position: absolute;
+  top: 330px;
+  left: 25%;
+  right: 25%;
+}
+
+.chips {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  top: 250px;
+  left: 32px;
+}
+
+::ng-deep .my-menu {
+  width: 320px;
+}
+
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 2px 2px, rgba(0, 0, 0, 0.23) 0px 2px 2px;
+}
+
+.thumb-shadow {
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.humb-shadow:hover {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.light-shadow {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+/* .light-shadow:hover {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+} */
+
+.load-button {
+  margin-top: 64px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleLogo {
+  position: relative;
+  left: 50px;
+  border: -80;
+  top: 220px;
+}
+
+.titleLogo img {
+  width: 28%;
+  /* -webkit-filter: drop-shadow(4px 4px 4px #222);
+  filter: drop-shadow(4px 4px 4px #222); */
+}
+
