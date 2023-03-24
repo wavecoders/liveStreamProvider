@@ -63,13 +63,15 @@ export class UserProfileManagerComponent implements OnInit {
         user.content.description = content.description
         user.content.stream_id = content.id
 
-        this.virtualChannelService.createVirtualChannel(user)
+        this.virtualChannelService.createVirtualChannel(user).pipe()
         .subscribe((data: ChannelData) => {
           user.user_id = data.id
           user.content.stream_url = data.url
           this.usersService.updateUser(user)
+        }, error => {
+          user.active = false
+          this.usersService.updateUser(user)
         })
-
 
         return selectedLiveStream
 

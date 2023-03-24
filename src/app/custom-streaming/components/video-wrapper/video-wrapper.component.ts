@@ -4,7 +4,6 @@ import * as HLS from 'hls.js';
 import { VideoTimeService } from '../services/video-time.service';
 import { VideoService } from '../services/video.service';
 import { VolumeService } from '../services/volume.service';
-import { LiveContentService } from '../../services/live-content.service';
 
 @Component({
   selector: 'app-video-wrapper',
@@ -50,7 +49,6 @@ export class VideoWrapperComponent implements OnInit {
     private videoService: VideoService,
     private volumeService: VolumeService,
     private videoTimeService: VideoTimeService,
-    private liveContentService: LiveContentService,
   ) {}
 
   public ngOnInit() {
@@ -63,11 +61,7 @@ export class VideoWrapperComponent implements OnInit {
     this.videoService.loading$.subscribe(loading => {
       this.playing = !loading
       if(!loading && this.autoplay) this.videoService.play()
-      console.log('LOADING', loading)
-      this.liveContentService.isLoading.next(loading)
     })
-
-    this.videoService.playingState$.subscribe(data => console.log(data))
 
   }
 
@@ -113,8 +107,6 @@ export class VideoWrapperComponent implements OnInit {
         this.loadVideo(currentVideo);
       }
     }
-
-    this.liveContentService.content.next([])
 
     setTimeout(() => {
       this.videoService.play();
