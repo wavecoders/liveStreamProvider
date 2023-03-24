@@ -97,7 +97,7 @@ export class LiveContentService {
     });
 
     // this.liveContent.next(videoContent)
-    this.updatedPrograms.next(true)
+    // this.updatedPrograms.next(true)
   }
 
   constructor(
