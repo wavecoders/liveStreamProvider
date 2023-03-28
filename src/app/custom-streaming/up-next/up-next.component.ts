@@ -42,11 +42,16 @@ export class UpNextComponent implements OnInit {
   validContent: ContentData[] = []
 
   get hasContent() {
-    const content = this.liveContentService.content.value.filter(item => !this.contentIsExpired(item.timeEnd))
+    const content = this.liveContentService.content.value.filter(item => {
+      const endTime = item.timeEnd + 60
+      console.log('endTime:',endTime)
+      return !this.contentIsExpired(endTime)
+    })
     return (content.length > 0) ? true : false
   }
 
   liveContent$ = this.liveContentService.liveContent$
+  contentChanged$ = this.liveContentService.contentChanged$
 
   // selectedContent$ = this.liveContentService.content$
 
@@ -58,6 +63,10 @@ export class UpNextComponent implements OnInit {
   ngOnInit() {
 
     this.liveContentService.updatedPrograms$.subscribe(() => {
+      this.getContent()
+    })
+
+    this.contentChanged$.subscribe(() => {
       this.getContent()
     })
 
@@ -107,7 +116,7 @@ export class UpNextComponent implements OnInit {
         this.validContent = data.filter(item => {
           const curTime = Math.floor((new Date()).getTime() / 1000)
           const slotTime = Math.floor(new Date(item.endTime).getTime() / 1000)
-          return (slotTime > curTime)
+          return ((slotTime + item.duration) > curTime)
         })
 
         console.log('DATA', this.validContent)

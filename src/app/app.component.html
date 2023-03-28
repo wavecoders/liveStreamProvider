@@ -1,12 +1,24 @@
 <div>
     <app-login style="position: relative; margin: 0;" (loggedIn)="onLoggedIn($event)"></app-login>
-    <!-- <app-xray-content-finder
-    #xray
-    *ngIf="isLoggedIn"
-    [isLoggedIn]="isLoggedIn"
-    ></app-xray-content-finder> -->
-    <app-custom-streaming
-      *ngIf="isLoggedIn"
-      [isLoggedIn]="isLoggedIn"
-    ></app-custom-streaming>
+    <!--
+      <div style="display: flex;">
+        <app-xray-content-finder
+        #xray
+        *ngIf="isLoggedIn"
+        [isLoggedIn]="isLoggedIn"
+        ></app-xray-content-finder>
+      </div>
+    -->
+
+    <div>
+      <app-custom-streaming
+        *ngIf="isLoggedIn"
+        [isLoggedIn]="isLoggedIn"
+      ></app-custom-streaming>
+    </div>
+
+    <!-- <div>
+      <app-live-streaming></app-live-streaming>
+    </div> -->
+
 </div>

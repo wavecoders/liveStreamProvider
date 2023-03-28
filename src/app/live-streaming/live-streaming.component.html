@@ -1,0 +1,75 @@
+<div style="margin: 16px;">
+  <h1>
+    live-streaming works!
+  </h1>
+</div>
+
+<div *ngIf="(streamServices$ | async) as services" style="margin: 16px; margin-top: 32px;">
+  <mat-selection-list [multiple]="false" #userChannel>
+    <mat-list-option *ngFor="let service of services" [value]="service">
+      <div style="display: flex;">
+        <span style="flex: 1;">{{service.name}}</span>
+        <span>({{service.type}})</span>
+      </div>
+    </mat-list-option>
+    <mat-divider></mat-divider>
+  </mat-selection-list>
+  <div style="display: flex; gap: 8px">
+    <span style="display: flex; flex: 1; gap: 8px">
+      <button
+      mat-stroked-button
+      color="warn"
+      (click)="onDeleteAllUserChannels()"
+      [disabled]="services.length === 0"
+    >
+      Delete All
+    </button>
+      <button
+        mat-stroked-button
+        color="warn"
+        (click)="onDeleteUserChannel(userChannel.selectedOptions.selected[0].value)"
+        [disabled]="!(userChannel.selectedOptions.selected.length > 0)"
+      >
+        Delete
+      </button>
+    </span>
+    <span style="display: flex; gap: 8px; flex-direction: column;">
+      <ng-container *ngIf="(streamingChannels$ | async) as content">
+        <mat-form-field appearance="outline">
+          <mat-label>Select an Genre</mat-label>
+          <mat-select #selected>
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let item of content" [value]="item.id">
+              {{ (getAsset$(item.id) | async)?.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button
+          mat-stroked-button
+          *ngIf="(getAsset$(selected.value) | async) as asset"
+          (click)="onCreateUserChannel(selected?.value, asset)"
+          [disabled]="!(selected.value)"
+        >
+          Create {{ (getAsset$(selected.value) | async)?.name }}
+        </button>
+      </ng-container>
+    </span>
+  </div>
+</div>
+
+
+<!-- <div>
+  {{ live$ | async | json }}
+</div> -->
+
+<!-- <div>
+  {{ content$ | async | json }}
+</div> -->
+
+<!-- <div>
+  {{ user$ | async | json }}
+</div> -->
+
+<!-- <div>
+  {{ userSlots$ | async | json }}
+</div> -->

@@ -11,7 +11,7 @@ import { VideoService } from './components/services/video.service';
   selector: 'app-custom-streaming',
   templateUrl: './custom-streaming.component.html',
   styleUrls: ['./custom-streaming.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomStreamingComponent implements OnInit {
 

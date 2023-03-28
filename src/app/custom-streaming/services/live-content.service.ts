@@ -51,7 +51,9 @@ export class LiveContentService {
   subGenre$ = (category: string) => {
     return  this.liveContent$?.pipe(
       map(items => {
-        return items.filter(item => item.genre.toLowerCase() === category.toLowerCase())
+        return items.filter(item => {
+          return (item.genre.toLowerCase() === category.toLowerCase()) && (item.type !== 'live')
+        })
       }),
       map(items => {
         const data = items.map(item => item.sub)
@@ -97,7 +99,7 @@ export class LiveContentService {
     });
 
     // this.liveContent.next(videoContent)
-    this.updatedPrograms.next(true)
+    // this.updatedPrograms.next(true)
   }
 
   constructor(

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LiveContentService } from '../services/live-content.service';
 
 @Component({
@@ -10,6 +10,8 @@ export class LiveContentSelectorComponent implements OnInit {
 
   baseAssets = "/assets/images"
   upnext = false
+
+  completed = false
 
   _poster?: string
   @Input() set poster(image: string | unknown) {
@@ -52,10 +54,17 @@ export class LiveContentSelectorComponent implements OnInit {
   }
 
   timeRemaining(time: any) {
+
     const now = Math.floor(new Date().getTime() / 1000)
-    const remaining = new Date((time - now) * 1000).getMinutes()
-    if(remaining < 0) this.liveContentService.contentChanged.next(true)
-    return remaining
+    const remaining = new Date((time - now + 60) * 1000).getMinutes()
+
+    if(remaining <= 0 && !this.completed) {
+      this.liveContentService.contentChanged.next(true)
+      this.completed = true
+    }
+
+    return (this.completed) ? 0 : remaining
+
   }
 
 }

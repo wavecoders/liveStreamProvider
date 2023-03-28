@@ -1,7 +1,7 @@
 .box {
   position: relative;
-  width: 124px;
-  height: 164px;
+  width: 62px;
+  height: 82px;
   overflow: hidden;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* small shadow */
   transition: all 0.3s ease; /* smooth transition */

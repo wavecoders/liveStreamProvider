@@ -4,7 +4,6 @@ import * as HLS from 'hls.js';
 import { VideoTimeService } from '../services/video-time.service';
 import { VideoService } from '../services/video.service';
 import { VolumeService } from '../services/volume.service';
-import { LiveContentService } from '../../services/live-content.service';
 
 @Component({
   selector: 'app-video-wrapper',
@@ -18,6 +17,8 @@ export class VideoWrapperComponent implements OnInit {
   }
 
   @Input() autoplay = false
+
+  loading$ = this.videoService.loading$
 
   public loading!: boolean;
   public ignore!: boolean;
@@ -50,7 +51,6 @@ export class VideoWrapperComponent implements OnInit {
     private videoService: VideoService,
     private volumeService: VolumeService,
     private videoTimeService: VideoTimeService,
-    private liveContentService: LiveContentService,
   ) {}
 
   public ngOnInit() {
@@ -63,16 +63,13 @@ export class VideoWrapperComponent implements OnInit {
     this.videoService.loading$.subscribe(loading => {
       this.playing = !loading
       if(!loading && this.autoplay) this.videoService.play()
-      console.log('LOADING', loading)
-      this.liveContentService.isLoading.next(loading)
     })
-
-    this.videoService.playingState$.subscribe(data => console.log(data))
 
   }
 
   ngOnDestroy(): void {
     this.hls.detachMedia()
+    this.hls.destroy();
     console.log('DONE')
   }
 
@@ -102,9 +99,9 @@ export class VideoWrapperComponent implements OnInit {
    */
   public load(currentVideo: string): void {
 
-    this.hls.detachMedia()
+    this.videoService.pause();
+    // this.hls.detachMedia()
 
-    // this.videoService.pause();
 
     if (HLS.isSupported()) {
       this.loadVideoWithHLS(currentVideo);
@@ -114,11 +111,10 @@ export class VideoWrapperComponent implements OnInit {
       }
     }
 
-    this.liveContentService.content.next([])
-
-    setTimeout(() => {
-      this.videoService.play();
-    }, 500);
+    this.videoService.play();
+    // setTimeout(() => {
+    //   this.videoService.play();
+    // }, 500);
 
   }
 

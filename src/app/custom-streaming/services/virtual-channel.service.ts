@@ -57,13 +57,15 @@ export class VirtualChannelService extends CrudService<ContentData|VirtualChanne
     // {{API_SCHEME}}://{{API_ROOT}}/services/virtual-channel/18728/slots
     const today = new Date()
     const content = []
+    const duration = 1 //minutes
+    const startIn = 1 //minutes
 
     // console.log('CURRENT: ', currentContent)
     console.log('CONTENT: ', programs)
 
     for (let i = 0; i < programs.length; i++) {
 
-      today.setMinutes(today.getMinutes() + (1*i+2))
+      today.setMinutes(today.getMinutes() + duration + i)
       const nextTime = today.toISOString()
 
       const prg = programs[i]
@@ -71,7 +73,7 @@ export class VirtualChannelService extends CrudService<ContentData|VirtualChanne
       const data = {
         name: prg.name,
         startTime: nextTime,
-        duration: 120,
+        duration: duration,
         replacement: { id: prg.id }
       }
 
@@ -88,7 +90,7 @@ export class VirtualChannelService extends CrudService<ContentData|VirtualChanne
 
     if(!user) return EMPTY
     // {{API_SCHEME}}://{{API_ROOT}}/services/virtual-channel/18859/slots?offset=&limit=1
-    return this.findAll(['virtual-channel', user.user_id, 'slots?offset=&limit=10'], this.headers)
+    return this.findAll(['virtual-channel', user.user_id, 'slots?limit=10'], this.headers)
     .pipe(
       // switchMap((items: ContentData[]) => {
         // return items.filter(item => this.hasExpired(item))
@@ -152,7 +154,7 @@ export class VirtualChannelService extends CrudService<ContentData|VirtualChanne
     // {{API_SCHEME}}://{{API_ROOT}}/services?offset=&limit=10
     const URL = `https://api.broadpeak.io/v1//services`
 
-    const toDelete = this.findAll(['?offset=&limit=10'], this.headers).pipe(
+    const toDelete = this.findAll(['?limit=10'], this.headers).pipe(
       switchMap((data: any) => {
         return data.map((user: ChannelData) => {
           return this.delete(['virtual-channel', user.id], this.headers).pipe(take(1)).subscribe()

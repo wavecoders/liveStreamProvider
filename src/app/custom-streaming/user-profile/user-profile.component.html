@@ -20,7 +20,7 @@
 
     <div class="card-body" style="padding-top: 16px;" *ngIf="(mainGenre$ | async) as genres">
 
-      <mat-form-field appearance="outline" *ngIf="!isActive">
+      <mat-form-field appearance="outline" *ngIf="!isActive || !user.active">
         <mat-label>Genre</mat-label>
         <mat-select [formControl]="genreControl">
           <ng-container *ngFor="let genre of genres">

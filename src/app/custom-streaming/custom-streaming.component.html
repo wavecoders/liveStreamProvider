@@ -40,6 +40,7 @@
         </button>
         </div>
       </ng-template>
+
     </div>
     <span
       style="font-size: 1rem; padding-top: 8px; font-weight: 400; margin-left: 8px;"
@@ -55,7 +56,7 @@
   <div *ngIf="(user$(selectedTab) | async) as user">
 
     <div
-    style="padding: 32px; height: 100dvh; width: 100dvw;" class="box background-tint"
+    style="padding: 32px; height: 100dvh;" class="box background-tint"
     [style.background-image]="'url('+genreImage(user)+')'"
     >
 
@@ -91,21 +92,22 @@
     </div>
 
     <div style="display: flex; gap: 16px; position: relative;">
-      <div style="width: 100%">
+      <div style="width: 100%;">
         <app-video-wrapper
           [autoplay]="true"
           [videoStream]="user.content.stream_url"
         ></app-video-wrapper>
+
+        <div style="color: white; position: absolute;">
+          <h2 style="margin-bottom: 0;">{{ user.content.name | uppercase }}</h2>
+          <!-- <h3 style="margin-bottom: 0;opacity: .4;">{{ user.content.description }}</h3> -->
+        </div>
       </div>
 
-      <div style="color: white; position: absolute; left: 16px; bottom: 16px">
-        <!-- <h2 style="margin-bottom: 0;">{{ user.content.name | uppercase }}</h2> -->
-        <!-- <h3 style="opacity: .4;">{{ user.content.description }}</h3> -->
+      <div style="width: 370px;">
+        <app-up-next [user]="user"></app-up-next>
       </div>
-    </div>
 
-    <div *ngIf="user.sub !== ''">
-      <app-up-next [user]="user"></app-up-next>
     </div>
 
     </div>
@@ -114,78 +116,10 @@
 </div>
 
 <ng-template #ACCOUNTS>
-  <app-user-profile-manager></app-user-profile-manager>
+  <div>
+    <app-user-profile-manager></app-user-profile-manager>
+  </div>
 </ng-template>
-
-
-  <!-- <mat-tab-group animationDuration="0ms" (selectedTabChange)="onSelectedTab($event, users)">
-
-    <mat-tab label="User Profiles">
-      <app-user-profile-manager></app-user-profile-manager>
-    </mat-tab>
-
-    <mat-tab
-      *ngFor="let user of users; let i = index"
-      [label]="user.name"
-      [disabled]="!userValid(user)"
-    >
-
-      <ng-container *ngIf="selectedTab!==i">
-        <div
-        style="padding: 32px; height: 100dvh;" class="box background-tint"
-        [style.background-image]="'url('+user.content.backgroundImage"
-        >
-
-        <div style="display: flex; margin-top: 16px;">
-          <div style="padding-top: 8px;">
-            <div class="avatar-container">
-              <img [src]="user.image" height="44">
-            </div>
-          </div>
-          <div style="color: white; flex: 1;">
-            <h1 style="margin-bottom: 0; padding-top: 2px; margin-left: 8px;">
-              {{ user.name }}
-            </h1>
-            <p style="margin-left: 8px; color: whitesmoke; opacity: .45;">
-              <span>{{ user.genre | uppercase }}</span>
-              <span *ngIf="user.sub !== ''"> | {{ user.sub| uppercase }}</span>
-            </p>
-          </div>
-          <div>
-            <button mat-flat-button [matMenuTriggerFor]="menu">
-              SubGenre
-            </button>
-            <mat-menu #menu="matMenu">
-              <button *ngFor="let genre of (genre$(user) | async)" (click)="onSelectedSubGenre(user, genre)" mat-menu-item>
-                {{ genre | titlecase }}
-              </button>
-            </mat-menu>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 16px" *ngIf="user.content.stream_url !== ''">
-          <div>
-            <app-video-wrapper [autoplay]="true"></app-video-wrapper>
-          </div>
-
-          <div style="color: white">
-            <h2>{{ user.content.name | uppercase }}</h2>
-            <h3 style="opacity: .4;">{{ user.content.description }}</h3>
-          </div>
-        </div>
-
-        <div style="margin: 16px;" *ngIf="user.sub !== ''">
-          <app-up-next [user]="user"></app-up-next>
-        </div>
-        <div style="color: white">{{ isPlaying$ | async }}</div>
-        </div>
-      </ng-container>
-
-    </mat-tab>
-
-  </mat-tab-group> -->
-
-<!-- </div> -->
 
 
 

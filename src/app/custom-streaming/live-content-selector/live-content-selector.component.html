@@ -1,6 +1,6 @@
-<ng-container *ngIf="timeRemaining(time) > 0">
+<ng-container>
 
-  <div class="box">
+  <div class="box" *ngIf="timeRemaining(time) > 0">
     <div class="box-img">
       <img [src]="poster">
       <div class="box-check" *ngIf="upnext">
@@ -10,22 +10,22 @@
     <div class="box-img hover">
       <div class="box-content">
         <h2 style="margin-bottom: 0; line-height: 1.4rem;">
-        {{ details.title }}
+        {{ details?.title }}
         </h2>
-        <p style="width: 90%;">
+        <!-- <p style="width: 90%;">
           {{ details.description }}
-        </p>
+        </p> -->
       </div>
       <img [src]="image">
     </div>
   </div>
 
   <h4
-    style="margin-top: 8px; width: 124px;"
+    *ngIf="timeRemaining(time) > 0"
+    style="margin-top: 8px; width: 124px; margin-bottom: 0;"
     class="title-text"
   >
     <p style="opacity: .6;">{{ timeRemaining(time) }} minutes</p>
-
   </h4>
 </ng-container>
 

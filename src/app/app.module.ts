@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { XRAYContentFindersModule } from './xray-content/xray-content-finder.module';
 
 import { CustomStreamingModule } from './custom-streaming/custom-streaming.module';
+import { LiveStreamingModule } from './live-streaming/live-streaming.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CustomStreamingModule } from './custom-streaming/custom-streaming.modul
     LoginModule,
     MaterialModule,
     CustomStreamingModule,
+    LiveStreamingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

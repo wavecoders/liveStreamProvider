@@ -1,0 +1,152 @@
+[
+  {
+    "id": 34270,
+    "name": "Documentary",
+    "poster":"content/posters/poster-15.jpg",
+    "image":"content/shows/show-15.jpg",
+    "description": "Documentary Channel"
+  },
+  {
+      "id": 35968,
+      "name": "Reality TV",
+      "poster":"content/posters/poster-14.jpg",
+      "image":"content/shows/show-14.jpg",
+      "description": "Reality Channel"
+  },
+  {
+      "id": 35679,
+      "name": "Antony Burdain Parts Unknown",
+      "poster":"content/posters/poster-1.jpg",
+      "image":"content/shows/show-1.jpg",
+      "genre": "Reality/Travel",
+      "description": "Anthony Bourdain visits countries, delving into their political issues as well as indigenous food and culture."
+  },
+  {
+      "id": 35682,
+      "name": "Beyond Baghdad",
+      "poster":"content/posters/poster-17.jpg",
+      "image":"content/shows/show-17.jpg",
+      "genre": "Documentary/Investigative",
+      "description": "In the summer of 2003, violence against the U.S.-led coalition in Iraq spiked alarmingly. Traveling across Iraq, FRONTLINE reporters went to see how the U.S. plan to turn the country into a showcase for democracy in the Middle East was faring."
+  },
+  {
+      "id": 35686,
+      "name": "Carbon Farming - A Climate solution under our feet",
+      "poster":"content/posters/poster-4.jpg",
+      "image":"content/shows/show-4.jpg",
+      "genre": "Documentary/Environmental",
+      "description": "A powerful tool for curbing climate change is right beneath our feet ... soil! Carbon farming, also called regenerative agriculture, is a revolutionary method that traps carbon from the air into the ground to produce nutritious food."
+  },
+  {
+      "id": 35692,
+      "name": "Dancing with the stars",
+      "poster":"content/posters/poster-5.jpg",
+      "image":"content/shows/show-5.jpg",
+      "genre": "Reality/Competition",
+      "description": "U.S. reality show based on the British series 'Strictly Come Dancing', where celebrities partner up with professional dancers and compete against each other in weekly elimination rounds to determine a winner."
+  },
+  {
+      "id": 35690,
+      "name": "DIY Home Renovation",
+      "poster":"content/posters/poster-9.jpg",
+      "image":"content/shows/show-9.jpg",
+      "genre": "Reality/Makeover",
+      "description": "Jamie is doing up her Glasgow home and the most important job is designing a unique YouTube studio and makeup storage space, but she can't be there to oversee the installation."
+  },
+  {
+      "id": 35687,
+      "name": "Dramatic moments from BBC Earth",
+      "poster":"content/posters/poster-1.jpg",
+      "image":"content/shows/show-1.jpg",
+      "genre": "Documentary/Wildlife",
+      "description": "A warm, moving and sensitive tribute and a comprehensive and detailed biography of Elvis' life. Utilizing rare footage and photos from the 42 years of his life, the film follows the Presley story from his birth in Tupelo through his rise to superstardom to his tragic and untimely death. Featured are interviews with musicians and music historians."
+  },
+  {
+      "id": 35677,
+      "name": "Elvis Presley: A Life From Beginning To End",
+      "poster":"content/posters/poster-6.jpg",
+      "image":"content/shows/show-6.jpg",
+      "genre": "Documentary/Biographical",
+      "description": "Biographical Documentary promo for Elvis Presley: A Life From Beginning To End."
+  },
+  {
+      "id": 35676,
+      "name": "Forward Motion: The Story Of Michelle Obama",
+      "poster":"content/posters/poster-12.jpg",
+      "image":"content/shows/show-12.jpg",
+      "genre": "Documentary/Biographical",
+      "description": "In the history of the United States there has never been a more empowering, intelligent or charismatic First Lady as Michelle Obama. From humble beginnings on the south side of Chicago all the way to the White House."
+  },
+  {
+      "id": 35691,
+      "name": "Hell's Kitchen",
+      "poster":"content/posters/poster-7.jpg",
+      "image":"content/shows/show-7.jpg",
+      "genre": "Reality/Competition",
+      "description": "World renowned chef Gordon Ramsay puts aspiring young chefs through rigorous cooking challenges and dinner services at his restaurant in Hollywood, 'Hell's Kitchen'."
+  },
+  {
+      "id": 35689,
+      "name": "Home Makover",
+      "poster":"content/posters/poster-20.jpg",
+      "image":"content/shows/show-20.jpg",
+      "genre": "Reality/Makeover",
+      "description": "A family that has faced hardship has their dilapidated house completely rebuilt while they are away on vacation for a week."
+  },
+  {
+      "id": 35685,
+      "name": "New Forests for greater climate protection",
+      "poster":"content/posters/poster-17.jpg",
+      "image":"content/shows/show-17.jpg",
+      "genre": "Documentary/Environmental",
+      "description": "Climate change refers to long-term shifts in temperatures and weather patterns, mainly caused by human activities, especially the burning of fossil fuels."
+  },
+  {
+      "id": 35678,
+      "name": "Norway",
+      "poster":"content/posters/poster-13.jpg",
+      "image":"content/shows/show-13.jpg",
+      "genre": "Reality/Travel",
+      "description": "English / American / Norwegian propaganda film. The film was produced in the USA / UK during the war, with participating Norwegians as actors and extras in the most roles."
+  },
+  {
+      "id": 35683,
+      "name": "Obama's war",
+      "poster":"content/posters/poster-19.jpg",
+      "image":"content/shows/show-19.jpg",
+      "genre": "Documentary/Investigative",
+      "description": "Frontline tries to get a deeper understanding of the war in Afganistan. It interviews both American analysts and commanders on the ground and looks at reports from embedded journalists."
+  },
+  {
+      "id": 35680,
+      "name": "Portugal",
+      "poster":"content/posters/poster-18.jpg",
+      "image":"content/shows/show-18.jpg",
+      "genre": "Reality/Travel",
+      "description": "This program looks at the people, history, culture and geography of: Portugal"
+  },
+  {
+      "id": 35681,
+      "name": "Prison State",
+      "poster":"content/posters/poster-16.jpg",
+      "image":"content/shows/show-16.jpg",
+      "genre": "Documentary/Investigative",
+      "description": "From PBS and Frontline: With unprecedented access, FRONTLINE investigates the impact of mass incarceration in America, focusing on a troubled housing project in Louisville, Kentucky, and a statewide effort to reverse the trend."
+  },
+  {
+      "id": 35688,
+      "name": "The Immortal Jellyfish",
+      "poster":"content/posters/poster-8.jpg",
+      "image":"content/shows/show-8.jpg",
+      "genre": "Documentary/Wildlife",
+      "description": "An ambitious marine biologist risks everything to conceal a medical condition that could destroy her ability to follow her dreams."
+  },
+  {
+      "id": 35684,
+      "name": "The Plastic Problem",
+      "poster":"content/posters/poster-11.jpg",
+      "image":"content/shows/show-11.jpg",
+      "genre": "Documentary/Environmental",
+      "description": "The convenience of plastic does come with some costs-just ask the marine life featured in this episode. Plus, as temperatures plummet, hundreds of sea turtles need rescuing."
+  }
+]

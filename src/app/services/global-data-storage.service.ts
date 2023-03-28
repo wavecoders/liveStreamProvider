@@ -36,19 +36,18 @@ import { UtilsService } from './utils.service';
         return this.findSetting(storeName, setting)
 
       } catch(error) {
-        console.log(error)
         return
       }
 
     }
 
-    createSetting(storeName: string, setting: string, initialValue: any, options?: { expiresIn?: string, override?: boolean }) {
+    createSetting(storeName: string, setting: string, initialValue: any, options?: { expiresIn?: string, override?: boolean, create?: boolean }) {
 
       try {
 
         if(!this.hasStore(storeName)) {
           const message = `No such Store '${storeName}' has been Initialized`
-          throw new Error(message)
+          console.log(message)
         }
 
         this.removeExpired(storeName, setting)
@@ -67,8 +66,14 @@ import { UtilsService } from './utils.service';
         this.updateStore(storeName)
 
       } catch(error) {
-        console.log(error)
+
+        if(options?.create) {
+          this.createStore(storeName, options)
+          this.createSetting(storeName, setting, initialValue, options)
+        }
+
         return false
+
       }
 
       return true
